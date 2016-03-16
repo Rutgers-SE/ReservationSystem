@@ -1,5 +1,7 @@
 # Reservation System
 
+nothing from the garage repo should be managed in this git repo. This is purely for creating reservations, and creating users.
+
 ## Backend Heavy
 - [x] Basic User authentication
 - [ ] Reservation Creation
