@@ -1,14 +1,44 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>ReservationSystem</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<title><%= content_for?(:title) ? yield(:title) : "Galaxy Garage" %></title>
+
+  <%= stylesheet_link_tag    "application" %>
+  <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
+
 <body>
 
-<%= yield %>
+	<p class="notice"><%= notice %></p>
+	<p class="alert"><%= alert %></p>
+
+  <% if customer_signed_in? %>
+    Welcome <%= current_customer.first_name %>! <br>
+    <%= link_to "Sign out", :destroy_customer_session, method: :delete%>
+  <% else %>
+    <%= link_to "Login", :new_customer_session %>
+  <% end %>
+
+  <% if owner_signed_in? %>
+    Welcome <%= current_owner.first_name %>! <br>
+    <%= link_to "Sign out", :destroy_owner_session, method: :delete%>
+  <% else %>
+    <%= link_to "Login to owner", :new_owner_session %>
+  <% end %>
+
+  <% if admin_signed_in? %>
+    Welcome <%= current_admin.first_name %>! <br>
+    <%= link_to "Sign out", :destroy_admin_session, method: :delete%>
+  <% else %>
+    <%= link_to "Login to admin", :new_admin_session %>
+  <% end %>
+
+
+  <%= yield %>
 
 </body>
 </html>
