@@ -1,0 +1,48 @@
+<div class="title-bar" data-responsive-toggle="main-menu" data-hide-for="medium">
+  <button class="menu-icon" type="button" data-toggle></button>
+  <div class="title-bar-title">Menu</div>
+</div>
+
+<div class="top-bar" id="main-menu">
+  <div class="top-bar-left">
+    <ul class="dropdown menu" data-dropdown-menu>
+      <li class="menu-text">Galaxy Garage</li>
+    </ul>
+  </div>
+  <div class="top-bar-right">
+    <ul class="menu" data-responsive-menu="drilldown medium-dropdown">
+      <li class="has-submenu">
+        <a href="#">Accounts</a>
+        <ul class="submenu menu vertical" data-submenu>
+          <li>
+            <% if customer_signed_in? %>
+              <%= link_to "Sign out", :destroy_customer_session, method: :delete%>
+            <% else %>
+              <%= link_to "Login to Customer", :new_customer_session %>
+            <% end %>
+          </li>
+
+          <li>
+            <% if owner_signed_in? %>
+              <%= link_to "Sign out", :destroy_owner_session, method: :delete%>
+            <% else %>
+              <%= link_to "Login to owner", :new_owner_session %>
+            <% end %>
+
+          </li>
+
+          <li>
+            <% if admin_signed_in? %>
+              <%= link_to "Sign out", :destroy_admin_session, method: :delete%>
+            <% else %>
+              <%= link_to "Login to admin", :new_admin_session %>
+            <% end %>
+          </li>
+
+        </ul>
+      </li>
+      <li><a href="#">Two</a></li>
+      <li><a href="#">Three</a></li>
+    </ul>
+  </div>
+</div>

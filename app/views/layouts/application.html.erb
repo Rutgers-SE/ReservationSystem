@@ -13,32 +13,22 @@
 
 <body>
 
-	<p class="notice"><%= notice %></p>
-	<p class="alert"><%= alert %></p>
+  <%= render partial: "shared/navigation"%>
+  <div class="callout success" data-closable>
+    <p class="notice"><%= notice %></p>
+    <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+      <span aria-hidden="true">&times;</span>
+    </button>
 
-  <% if customer_signed_in? %>
-    Welcome <%= current_customer.first_name %>! <br>
-    <%= link_to "Sign out", :destroy_customer_session, method: :delete%>
-  <% else %>
-    <%= link_to "Login", :new_customer_session %>
-  <% end %>
-
-  <% if owner_signed_in? %>
-    Welcome <%= current_owner.first_name %>! <br>
-    <%= link_to "Sign out", :destroy_owner_session, method: :delete%>
-  <% else %>
-    <%= link_to "Login to owner", :new_owner_session %>
-  <% end %>
-
-  <% if admin_signed_in? %>
-    Welcome <%= current_admin.first_name %>! <br>
-    <%= link_to "Sign out", :destroy_admin_session, method: :delete%>
-  <% else %>
-    <%= link_to "Login to admin", :new_admin_session %>
-  <% end %>
+  </div>
+  <div class="callout alert" data-closable>
+    <p class="alert"><%= alert %></p>
+    <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
 
 
   <%= yield %>
-
 </body>
 </html>
