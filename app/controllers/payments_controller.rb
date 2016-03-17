@@ -11,7 +11,7 @@ class PaymentsController < ApplicationController
   end
 
   def create
-    @amount = 500
+    @amount = 5000
 
     customer = Stripe::Customer.create(
       :email =>  current_customer.email,
