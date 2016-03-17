@@ -10,9 +10,10 @@ Nothing from the garage repo should be managed in this git repo. This is purely 
   - [ ] Create UI for the Owner to change prices
 	- [ ] Integrate this into the owner dashboard
 - [ ] Reservation Creation
-- [ ] Garage Http Interface Controller
+- [ ] Garage HTTP Interface Controller
 - [ ] Owner Finance Panel
 - [ ] Admin Switch Panel
+
 
 ## Frontend heavy
 
