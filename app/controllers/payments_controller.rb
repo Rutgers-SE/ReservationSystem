@@ -6,8 +6,7 @@ class PaymentsController < ApplicationController
   end
 
   def create
-    # Amount in cents
-    @amount = 500
+    @amount = 500 # this should change depending on the duration of the reservation
 
     customer = Stripe::Customer.create(
       :email => current_customer.email,
