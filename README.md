@@ -4,7 +4,7 @@ Nothing from the garage repo should be managed in this git repo. This is purely 
 
 ## Backend Heavy
 - [x] Basic User authentication
-- [x] Reservation Creation
+- [ ] Reservation Creation
 - [ ] Garage Http Interface Controller
 - [ ] Owner Finance Panel
 - [ ] Payment Controller
