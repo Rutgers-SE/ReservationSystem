@@ -4,18 +4,24 @@ Nothing from the garage repo should be managed in this git repo. This is purely 
 
 ## Backend Heavy
 - [x] Basic User authentication
+- [ ] Payment Controller
+  - [x] Setup Stripe Account
+  - [x] Integrate Stripe into Rails
+  - [ ] Create UI for the Owner to change prices
+	- [ ] Integrate this into the owner dashboard
 - [ ] Reservation Creation
 - [ ] Garage Http Interface Controller
 - [ ] Owner Finance Panel
-- [ ] Payment Controller
 - [ ] Admin Switch Panel
 
 ## Frontend heavy
-this portion should be left for the final demo
-- [ ] convert CRUD into single page experiences.
+
+This portion should be left for the final demo. In this portion, we will be converting the static pages that are generated at every request into single page applications.
+
+- [ ] Convert CRUD into single page experiences.
   - [ ] User
   - [ ] Reservation
-
+  - [ ] Admin Switch Panel
 
 ### Payment Testing
 
