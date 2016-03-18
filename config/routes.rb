@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   get 'home/index'
 
   resources :payments
+  resources :prices
 
+  get '/price/assign' => 'prices#assign_price', as: :assign_price
 
   root 'home#index'
 end

@@ -1,0 +1,8 @@
+<ol>
+  <% @prices.each do |p| %>
+    <li><%= p.pennies %></li>
+  <% end %>
+</ol>
+
+<%= link_to "add price", new_price_path %> <br>
+<%= link_to "assign price", assign_price_path %>
