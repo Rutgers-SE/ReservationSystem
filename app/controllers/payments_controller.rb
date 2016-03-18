@@ -1,7 +1,5 @@
-require 'byebug'
 class PaymentsController < ApplicationController
   before_filter :authenticate_customer!, only: [:create]
-
 
   def index
   end
