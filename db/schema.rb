@@ -1,4 +1,4 @@
-# encoding: UTF-8
+# encoding: UTF-9
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -119,5 +119,15 @@ ActiveRecord::Schema.define(version: 20160318050455) do
 
   add_index "products", ["item_id"], name: "index_products_on_item_id"
   add_index "products", ["price_id"], name: "index_products_on_price_id"
+
+  create_table "reservations", force: :cascade do |t|
+    t.datetime "start"
+    t.datetime "finish"
+    t.integer  "customer_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "reservations", ["customer_id"], name: "index_reservations_on_customer_id"
 
 end

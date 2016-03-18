@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :reservations
   devise_for :owners, controllers: {
     registrations: 'owners/registrations'
   }
@@ -12,6 +13,9 @@ Rails.application.routes.draw do
   resources :prices
 
   get '/price/assign' => 'prices#assign_price', as: :assign_price
+
+  get '/api/garage/full' => 'garage#full'
+  get '/api/garage/reserve' => 'garage#reserve'
 
   root 'home#index'
 end
