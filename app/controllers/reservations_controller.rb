@@ -1,10 +1,12 @@
+require 'byebug'
 class ReservationsController < ApplicationController
   before_action :set_reservation, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_customer!
 
   # GET /reservations
   # GET /reservations.json
   def index
-    @reservations = Reservation.all
+    @reservations = current_customer.reservations.all
   end
 
   # GET /reservations/1
@@ -16,6 +18,7 @@ class ReservationsController < ApplicationController
   def new
     @reservation = Reservation.new
   end
+  
 
   # GET /reservations/1/edit
   def edit
@@ -69,6 +72,6 @@ class ReservationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def reservation_params
-      params.require(:reservation).permit(:start, :finish, :customers_id)
+      params.require(:reservation).permit(:start, :finish, :customer_id)
     end
 end

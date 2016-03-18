@@ -12,5 +12,8 @@ Rails.application.routes.draw do
   resources :payments
 
 
+  get '/api/garage/full' => 'garage#full'
+  get '/api/garage/reserve' => 'garage#reserve'
+
   root 'home#index'
 end

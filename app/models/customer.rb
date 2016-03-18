@@ -4,4 +4,6 @@ class Customer < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :confirmable, :lockable
+         
+  has_many :reservations
 end
