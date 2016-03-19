@@ -1,6 +1,6 @@
 require 'byebug'
 class ReservationsController < ApplicationController
-  before_action :set_reservation, only: [:show, :edit, :update, :destroy]
+  before_action :set_reservation, only: [:show, :edit, :update, :destroy, :validate]
   before_action :authenticate_customer!
 
   # GET /reservations
@@ -17,8 +17,9 @@ class ReservationsController < ApplicationController
   # GET /reservations/new
   def new
     @reservation = Reservation.new
+
   end
-  
+
 
   # GET /reservations/1/edit
   def edit
@@ -29,14 +30,18 @@ class ReservationsController < ApplicationController
   def create
     @reservation = Reservation.new(reservation_params)
 
-    respond_to do |format|
-      if @reservation.save
-        format.html { redirect_to @reservation, notice: 'Reservation was successfully created.' }
-        format.json { render :show, status: :created, location: @reservation }
-      else
-        format.html { render :new }
-        format.json { render json: @reservation.errors, status: :unprocessable_entity }
-      end
+
+
+    # reserve space in the garage (REST API)
+    return render :new unless Reservation.remote_reserve(@reservation)
+
+    if @reservation.save
+      redirect_to new_payment_path(reservation_id: @reservation.id), {
+        notice: 'Reservation was successfully created.'
+      }
+    else
+      Reservation.remote_remove @reservation
+      render :new
     end
   end
 
@@ -62,6 +67,14 @@ class ReservationsController < ApplicationController
       format.html { redirect_to reservations_url, notice: 'Reservation was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+
+  def validate
+    # need to add more stuff to make sure nothing sketchy happens
+    @reservation.is_validated = true
+    @reservation.save
+    redirect_to root_path, notice: "Reservation Created Successfully"
   end
 
   private

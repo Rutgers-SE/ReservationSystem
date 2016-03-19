@@ -1,3 +1,3 @@
 class Price < ActiveRecord::Base
-  has_many :items, throught: :products
+  has_many :items, through: :products
 end

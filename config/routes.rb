@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
+
   resources :reservations
+
+  get '/reservation/:id/validate' => 'reservations#validate', as: :validate_reservation
+
   devise_for :owners, controllers: {
     registrations: 'owners/registrations'
   }

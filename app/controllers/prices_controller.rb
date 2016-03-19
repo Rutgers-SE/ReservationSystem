@@ -1,3 +1,4 @@
+require 'byebug'
 class PricesController < ApplicationController
 
   def index
@@ -10,9 +11,10 @@ class PricesController < ApplicationController
 
   def assign_price
     @prices = Price.all
-    @owners = Owner.all
-
-    # I can abstract this
+    @owners = Object.constants
+      .select { |c| defined? Object.const_get(c).purchasable }
+      .map { |c| [c.to_s, c.to_s]}
+    byebug
     @payment_types = [
       ["Per Hour", 'per-hour'],
       ["One Time", 'one-time']
