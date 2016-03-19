@@ -7,6 +7,10 @@ class Reservation < ActiveRecord::Base
   private
   
   def reserve_in_garage
+    if(@start > @finish)  
+     # format.html { redirect_to @reserve_in_garage, notice: 'Start has to be before finish.' }
+      return false # print some error ? 
+    end
     ##### Uncomment this and change the url to the proper url when ready
     ##### testing for integration.
     # url = 'https://garagesyst-oufo.c9users.io'
