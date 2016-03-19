@@ -6,7 +6,7 @@ class ReservationsController < ApplicationController
   # GET /reservations
   # GET /reservations.json
   def index
-    @reservations = current_customer.reservations.all
+    @reservations = current_customer.reservations.where :is_validated => true
   end
 
   # GET /reservations/1
@@ -30,8 +30,6 @@ class ReservationsController < ApplicationController
   def create
     @reservation = Reservation.new(reservation_params)
 
-
-
     # reserve space in the garage (REST API)
     return render :new unless Reservation.remote_reserve(@reservation)
 
@@ -40,6 +38,8 @@ class ReservationsController < ApplicationController
         notice: 'Reservation was successfully created.'
       }
     else
+      # if the reservation did not save successfully
+      # remove the reservation
       Reservation.remote_remove @reservation
       render :new
     end

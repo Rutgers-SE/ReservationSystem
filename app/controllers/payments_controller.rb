@@ -8,13 +8,14 @@ class PaymentsController < ApplicationController
 
 
   def new
-    @price = Price.first.pennies
+    @price = Price.last.pennies
     @amount = @price * @reservation.hours
   end
 
   def create
-    price = Price.first.pennies
-    @amount = (price * @reservation.hours).to_i
+    #price = Price.last.pennies
+    #@amount = (price * @reservation.hours).to_i
+    @amount = @reservation.calculate_cost Price.last.pennies
 
     customer = Stripe::Customer.create(
       :email => current_customer.email,

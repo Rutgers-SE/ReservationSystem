@@ -9,6 +9,12 @@ class Reservation < ActiveRecord::Base
     (finish - start) / (60 * 60)
   end
 
+
+
+  def calculate_cost(price)
+    (price * hours).to_i
+  end
+
   class << self
     def remote_reserve(reservation)
       #url = 'https://garagesyst-oufo.c9users.io'

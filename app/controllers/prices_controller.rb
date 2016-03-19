@@ -3,6 +3,7 @@ class PricesController < ApplicationController
 
   def index
     @prices = Price.all
+    @current_price = Price.last
   end
 
   def new
@@ -14,7 +15,7 @@ class PricesController < ApplicationController
     @owners = Object.constants
       .select { |c| defined? Object.const_get(c).purchasable }
       .map { |c| [c.to_s, c.to_s]}
-    byebug
+
     @payment_types = [
       ["Per Hour", 'per-hour'],
       ["One Time", 'one-time']

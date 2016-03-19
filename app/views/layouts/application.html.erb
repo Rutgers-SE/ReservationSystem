@@ -1,40 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-	<title><%= content_for?(:title) ? yield(:title) : "Galaxy Garage" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "Galaxy Garage" %></title>
 
-  <%= stylesheet_link_tag    "application" %>
-  <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
 
-<body>
-
-
-	<%= render partial: "shared/navigation"%>
-	<%= link_to "prices", prices_path %>
-	<%= link_to "new reservation", new_reservation_path %>
+  <body>
+    <%= render partial: "shared/navigation"%>
+    <%= link_to "prices", prices_path %>
+    <%= link_to "new reservation", new_reservation_path %>
     <%= link_to "payment", payments_path %>
 
 
-  <div class="callout success" data-closable>
-    <p class="notice"><%= notice %></p>
-    <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
-      <span aria-hidden="true">&times;</span>
-    </button>
+    <div class="callout success" data-closable>
+      <p class="notice"><%= notice %></p>
+      <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+	<span aria-hidden="true">&times;</span>
+      </button>
 
-  </div>
-  <div class="callout alert" data-closable>
-    <p class="alert"><%= alert %></p>
-    <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
+    </div>
+    <div class="callout alert" data-closable>
+      <p class="alert"><%= alert %></p>
+      <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+	<span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <%= link_to "My Reservations", reservations_path %>
 
 
-  <%= yield %>
-</body>
+    <%= yield %>
+  </body>
 </html>
