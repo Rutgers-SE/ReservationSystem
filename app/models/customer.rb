@@ -6,4 +6,5 @@ class Customer < ActiveRecord::Base
          :omniauthable, :confirmable, :lockable
          
   has_many :reservations
+  has_many :transactions
 end

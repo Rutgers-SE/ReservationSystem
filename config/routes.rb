@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :reservations
 
   get '/reservation/:id/validate' => 'reservations#validate', as: :validate_reservation
+  get '/payment/refund' => 'payments#refund', as: :refund_payment
 
   devise_for :owners, controllers: {
     registrations: 'owners/registrations'

@@ -1,7 +1,7 @@
 require 'byebug'
 class PaymentsController < ApplicationController
-  before_filter :authenticate_customer!, only: [:create]
-  before_filter :set_reservation, only: [:create, :new]
+  before_filter :authenticate_customer!, only: [:create, :refund, :new]
+  before_filter :set_reservation, only: [:create, :new, :refund]
 
   def index
   end
@@ -13,9 +13,8 @@ class PaymentsController < ApplicationController
   end
 
   def create
-    #price = Price.last.pennies
-    #@amount = (price * @reservation.hours).to_i
-    @amount = @reservation.calculate_cost Price.last.pennies
+    @price = Price.last
+    @amount = @reservation.calculate_cost @price.pennies
 
     customer = Stripe::Customer.create(
       :email => current_customer.email,
@@ -29,11 +28,40 @@ class PaymentsController < ApplicationController
       :currency    => 'usd'
     )
 
-    redirect_to validate_reservation_path(@reservation)
+    transaction = Transaction.new(
+      price_id: @price.id,
+      reservation_id: @reservation.id,
+      customer_id: current_customer.id,
+      charge_id: charge.id,
+    )
+
+    if transaction.save       
+      redirect_to validate_reservation_path(@reservation)
+    else
+      render :new, notice: "Please call our hotline"
+    end
 
   rescue Stripe::CardError => e
     flash[:error] = e.message
     redirect_to new_payment_path
+  end
+
+  def refund
+    return redirect_to reservations_path unless @reservation.is_valid
+
+    byebug
+
+    customer = Stripe::Customer.create(
+      email: current_customer.email,
+    )
+
+    refund = Stripe::Refund.create(
+      customer: customer.id,
+      amount: @reservation.calculate_cost(Price.last.pennies),
+      description: "Galaxy Garage Reservation Refund",
+      currency: 'usd'
+    )
+    
   end
 
   private
