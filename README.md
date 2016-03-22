@@ -8,7 +8,7 @@ Nothing from the garage repo should be managed in this git repo. This is purely 
   - [x] Setup Stripe Account
   - [x] Integrate Stripe into Rails
   - [x] Implement a payment API so that models that act as 'items' can be made purchasable and given a price.
-  - [ ] Create UI for the Owner to change prices
+  - [x] Create UI for the Owner to change prices
 	- [ ] Integrate this into the owner dashboard
 - [x] Reservation Creation (CRUD)
   - [ ] Make the reservation model conform to the payment service API
