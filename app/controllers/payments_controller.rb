@@ -28,6 +28,8 @@ class PaymentsController < ApplicationController
       :currency    => 'usd'
     )
 
+    byebug
+
     transaction = Transaction.new(
       price_id: @price.id,
       reservation_id: @reservation.id,
