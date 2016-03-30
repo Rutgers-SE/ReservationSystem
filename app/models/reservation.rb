@@ -2,11 +2,11 @@ require 'rest-client'
 class Reservation < ActiveRecord::Base
   URL = "http://45.79.165.248:8080/"
   belongs_to :customers
+  before_save :check_if_valid_date_range # lets see if this is correct
 
   validates_presence_of :start
   validates_presence_of :finished
 
-  #
   # need to enable pricing
   has_one :price, as: :item, through: :products
 
@@ -27,7 +27,7 @@ class Reservation < ActiveRecord::Base
       }
       outcome = JSON.parse response.to_s
 
-      return false unless outcome
+      #return false unless outcome # can't use this when no access to the internet
       return true
 
     end
@@ -43,8 +43,8 @@ class Reservation < ActiveRecord::Base
       # I would prefer if the "REST api" was an actual
       # "REST api" and returned something a little more
       # that a simple boolean... but what ever...
-      return false unless outcome
-      return return true
+      #return false unless outcome # can't use this when no access to the internet
+      return true
     end
 
     # This code is not implemented in the garage system.
@@ -53,5 +53,10 @@ class Reservation < ActiveRecord::Base
       return true
     end
   end
+
+  private
+    def check_if_valid_date_range
+      finish > start
+    end
 
 end

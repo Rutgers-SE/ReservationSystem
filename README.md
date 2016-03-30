@@ -2,6 +2,19 @@
 
 Nothing from the garage repo should be managed in this git repo. This is purely for creating reservations, and creating users.
 
+
+## How to run
+
+When running this rails server with the correct stripe credentials, make sure that you are in the root of the project directory, and run
+```bash
+  bash <(./run)
+```
+
+The `run` script depends on the `secret` file. The `secret` file is not tracked by the Git repo, and should be requested from the owner through email.
+
+This will change eventually, so make sure you stay updated on how to run it
+
+
 ## Backend Heavy
 - [x] Basic User authentication
 - [ ] Payment Controller
