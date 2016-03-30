@@ -17,7 +17,6 @@ class ReservationsController < ApplicationController
   # GET /reservations/new
   def new
     @reservation = Reservation.new
-
   end
 
 
@@ -79,6 +78,22 @@ class ReservationsController < ApplicationController
     @reservation.is_validated = true
     @reservation.save
     redirect_to root_path, notice: "Reservation Created Successfully"
+  end
+
+
+  # this is apart of the reservation REST API.
+  # this is the only endpoint we need... (so far)
+  def valid_qr
+    code = params[:qr_data]
+    respond_to do |format|
+      if Transaction.valid_qr code
+        format.html { render json: { message: "Valid qr code" }}
+        format.json { render json: { message: "Valid qr code" } } 
+      else 
+        format.html { render json: { error: "Nah dude, your trying to fake out the system" }}
+        format.json { render json: { error: "Nah dude, your trying to fake out the system" }}
+      end
+    end
   end
 
   private

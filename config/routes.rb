@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'dashboard/profit'
+
+  get 'dashboard/switch'
+
   resources :reservations
 
   get '/reservation/:id/validate' => 'reservations#validate', as: :validate_reservation
