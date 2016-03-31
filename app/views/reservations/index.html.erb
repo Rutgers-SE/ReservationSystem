@@ -7,20 +7,16 @@
     <tr>
       <th>Start</th>
       <th>Finish</th>
-      <th>Customers</th>
-      <th colspan="3"></th>
+      <th>Cost</th>
     </tr>
   </thead>
 
   <tbody>
-    <% @reservations.each do |reservation| %>
+    <% @transactions.each do |t| %>
       <tr>
-        <td><%= reservation.start %></td>
-        <td><%= reservation.finish %></td>
-        <td><%= reservation.customers %></td>
-        <td><%= link_to 'Show', reservation %></td>
-        <td><%= link_to 'Edit', edit_reservation_path(reservation) %></td>
-        <td><%= link_to 'Destroy', reservation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= t.reservation.start %></td>
+        <td><%= t.reservation.finish %></td>
+        <td><%= number_to_currency(t.reservation.calculate_cost(t.price.pennies / 100)) %></td>
       </tr>
     <% end %>
   </tbody>

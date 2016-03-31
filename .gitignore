@@ -15,6 +15,9 @@
 /log/*
 !/log/.keep
 /tmp
-/.secrets
+
+# ignore all files that are named or have secret extensions
+/**/*.secret
+/secret
 
 .byebug_history

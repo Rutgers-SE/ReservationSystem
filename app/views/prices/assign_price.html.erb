@@ -1,0 +1,8 @@
+<%= form_tag "/price/assign" do %>
+  <%= collection_select(:price, :price_id, @prices, :id, :pennies) %>
+  <%= collection_select(:item, :owner_id, @owners, :id, :email) %>
+  <%= select_tag :payment_type, options_for_select(@payment_types) %>
+
+
+  <%= submit_tag %>
+<% end %>

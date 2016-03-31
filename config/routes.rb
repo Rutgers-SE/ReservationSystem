@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
+
+  get 'dashboard/profit'
+
+  get 'dashboard/switch'
+
   resources :reservations
+
+  get '/reservation/:id/validate' => 'reservations#validate', as: :validate_reservation
+  get '/payment/refund' => 'payments#refund', as: :refund_payment
+
   devise_for :owners, controllers: {
     registrations: 'owners/registrations'
   }
@@ -10,7 +19,9 @@ Rails.application.routes.draw do
   get 'home/index'
 
   resources :payments
+  resources :prices
 
+  get '/price/assign' => 'prices#assign_price', as: :assign_price
 
   get '/api/garage/full' => 'garage#full'
   get '/api/garage/reserve' => 'garage#reserve'

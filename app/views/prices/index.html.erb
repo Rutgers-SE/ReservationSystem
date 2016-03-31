@@ -1,0 +1,3 @@
+<span> Price of reservation is <b><%= number_to_currency (@current_price.pennies.to_f / 100.to_f) %></b> per hour</span>
+<br>
+<%= link_to "change price", new_price_path %> <br>
