@@ -13,8 +13,6 @@ heroku: &heroku
   adapter: postgresql
   encoding: unicode
   pool: 5
-  username: postgres
-  password: thGythGy
 
 development:
   <<: *default
@@ -30,6 +28,10 @@ test:
   #database: galaxy_garage_test
 
 production:
-  <<: *default
-  database: db/production.sqlite3
+  <<: *heroku
+  host: ec2-54-225-112-119.compute-1.amazonaws.com
+  database: danm83bqkcm0m4
+  username:  irfnajbuvwdhpj
+  password: KFuldnWSrmYVlLmBO66T3BKSEG
+  port: 5432
   #database: db/production.sqlite3

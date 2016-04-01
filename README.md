@@ -20,21 +20,21 @@ Customer
 
 ```
 email = test@customer.com
-password = 1234qwer
+password = 12345678
 ```
 
 Owner
 
 ```
 email = test@owner.com
-password = 1234qwer
+password = 12345678
 ```
 
 Admin
 
 ```
 email = test@admin.com
-password = 1234qwer
+password = 12345678
 ```
 
 ## Backend Heavy
