@@ -4,7 +4,3 @@
 require File.expand_path('../config/application', __FILE__)
 
 Rails.application.load_tasks
-
-task :payment do
-  `PUBLISHABLE_KEY=pk_test_nkABjmEhINPYiDKMzCp0z7yS SECRET_KEY=sk_test_Nee1hSVu4ViJhny9SySDQnKg rails s`
-end
