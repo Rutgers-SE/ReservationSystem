@@ -1,1 +1,1 @@
-cat secret | grep -e 'development:' | sed s/development://
+cat secret | bash && ngrok 3000
