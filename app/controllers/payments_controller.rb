@@ -36,6 +36,9 @@ class PaymentsController < ApplicationController
     )
 
     if transaction.save       
+      # send the to the user
+      byebug
+      NotificationMailer.reservation_send_notification(transaction)
       redirect_to validate_reservation_path(@reservation)
     else
       render :new, notice: "Please call our hotline"

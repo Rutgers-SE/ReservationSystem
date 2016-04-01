@@ -1,0 +1,16 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= content_for?(:title) ? yield(:title) : "Galaxy Garage" %></title>
+    <%= stylesheet_link_tag    "qr" %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body>
+    <%= link_to "Back", reservations_path %>
+    <%= yield %>
+  </body>
+</html>

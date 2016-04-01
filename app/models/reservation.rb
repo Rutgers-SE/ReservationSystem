@@ -1,3 +1,4 @@
+require 'rqrcode'
 require 'rest-client'
 require 'byebug'
 class Reservation < ActiveRecord::Base
@@ -20,6 +21,11 @@ class Reservation < ActiveRecord::Base
 
   def calculate_cost_in_pennies(pip)
     calculate_cost(pip) * 100
+  end
+
+  def generate_qr
+    qrcode = RQRCode::QRCode.new("#{customer.email}-#{start.to_s}-#{finish.to_s}")
+    qrcoee.as_html
   end
 
   class << self

@@ -1,7 +1,9 @@
 require 'byebug'
 class ReservationsController < ApplicationController
-  before_action :set_reservation, only: [:show, :edit, :update, :destroy, :validate]
+  before_action :set_reservation, only: [:show, :edit, :update, :destroy, :validate, :qr_code]
   before_action :authenticate_customer!
+
+  layout 'qr', only: [:qr_code]
 
   # GET /reservations
   # GET /reservations.json
@@ -78,6 +80,11 @@ class ReservationsController < ApplicationController
     @reservation.is_validated = true
     @reservation.save
     redirect_to root_path, notice: "Reservation Created Successfully"
+  end
+
+  def qr_code
+    @trans = Transaction.where(reservation_id: @reservation.id).first
+    @qr = @trans.generate_qr
   end
 
 
