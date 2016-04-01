@@ -25,5 +25,7 @@ Rails.application.routes.draw do
   get '/api/garage/full' => 'garage#full'
   get '/api/garage/reserve' => 'garage#reserve'
 
+  get '/owner' => 'dashboard#switch'
+
   root 'home#index'
 end

@@ -17,17 +17,17 @@ heroku: &heroku
   password: thGythGy
 
 development:
-  <<: *heroku
-  database: galaxy_garage_dev
-  #database: db/development.sqlite3
+  <<: *default
+  #database: galaxy_garage_dev
+  database: db/development.sqlite3
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
-  <<: *heroku
-  #database: db/test.sqlite3
-  database: galaxy_garage_test
+  <<: *default
+  database: db/test.sqlite3
+  #database: galaxy_garage_test
 
 production:
   <<: *default

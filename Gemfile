@@ -3,10 +3,11 @@ source 'https://rubygems.org'
 # heroku things
 ruby '2.2.4'
 gem 'rails_12factor'
+gem 'figaro'
 
 gem 'rails', '4.2.6'
-#gem 'sqlite3'
-gem 'pg'
+gem 'sqlite3'
+#gem 'pg'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'

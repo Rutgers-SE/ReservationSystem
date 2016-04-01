@@ -19,5 +19,9 @@
 # ignore all files that are named or have secret extensions
 /**/*.secret
 /secret
+.env
 
 .byebug_history
+
+# Ignore application configuration
+/config/application.yml

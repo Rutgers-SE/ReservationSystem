@@ -1,4 +1,6 @@
 class DashboardController < ApplicationController
+  before_action :authenticate_owner!
+
   def profit
     @profit_made = Transaction.total_finalized
     @profit_estimated = Transaction.total_finalized
