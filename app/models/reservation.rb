@@ -41,10 +41,6 @@ class Reservation < ActiveRecord::Base
 
     end
 
-    def if_true string_true
-      string_true == 'true'
-    end
-
     # save a space in the garage
     def remote_reserve_space(res)
       response = RestClient.get "http://45.79.165.248:8080/api/garage/b/setreservation", params: {

@@ -78,7 +78,7 @@ class ReservationsController < ApplicationController
     # need to add more stuff to make sure nothing sketchy happens
     @reservation.is_validated = true
     @reservation.save
-    redirect_to root_path, notice: "Reservation Created Successfully"
+    redirect_to reservations_path, notice: "Reservation Created Successfully"
   end
 
   def qr_code
