@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
 
   get 'dashboard/profit'
-
-  get 'dashboard/switch'
+  get 'dashboard/switch', as: :dashboard
 
   resources :reservations
 
