@@ -36,7 +36,6 @@ class PaymentsController < ApplicationController
 
     if transaction.save       
       # send the to the user
-      byebug
       NotificationMailer.reservation_send_notification(transaction)
       redirect_to validate_reservation_path(@reservation)
     else
@@ -51,7 +50,6 @@ class PaymentsController < ApplicationController
   def refund
     return redirect_to reservations_path unless @reservation.is_valid
 
-    byebug
 
     customer = Stripe::Customer.create(
       email: current_customer.email,
