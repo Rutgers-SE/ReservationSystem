@@ -26,7 +26,7 @@ class PricesController < ApplicationController
     @price = Price.new(price_params)
 
     if @price.save
-        redirect_to prices_path
+        redirect_to dashboard_path
       else
         flas[:notice] = "something went wrong?"
         render :new

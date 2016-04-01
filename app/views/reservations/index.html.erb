@@ -7,6 +7,7 @@
     <tr>
       <th>Start</th>
       <th>Finish</th>
+      <th>Hours</th>
       <th>Cost</th>
     </tr>
   </thead>
@@ -16,7 +17,8 @@
       <tr>
         <td><%= t.reservation.start %></td>
         <td><%= t.reservation.finish %></td>
-        <td><%= number_to_currency(t.reservation.calculate_cost(t.price.pennies / 100)) %></td>
+        <td><%= t.reservation.hours %></td>
+        <td><%= number_to_currency(t.reservation.calculate_cost(t.price.pennies)) %></td>
       </tr>
     <% end %>
   </tbody>

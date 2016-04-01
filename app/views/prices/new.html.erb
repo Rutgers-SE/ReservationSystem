@@ -1,5 +1,7 @@
-<%= form_for(@price) do |f| %>
-  <%= f.label :pennies %>
-  <%= f.text_field :pennies %>
-  <%= f.submit %>
-<% end %>
+<div class="row">
+  <%= form_for(@price) do |f| %>
+    <%= f.label :pennies %>
+    <%= f.text_field :pennies %>
+    <%= f.submit class: "button " %>
+  <% end %>
+</div>

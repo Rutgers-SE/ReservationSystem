@@ -1,2 +1,40 @@
-<h1>Dashboard#switch</h1>
-<p>Find me in app/views/dashboard/switch.html.erb</p>
+<div class="row">
+	<h3>Finance</h3>
+	<div class="panel callout radius">
+		<h4>Price Per Hour for a reservation</h4>
+		<% unless @price.nil? %>
+			<%= number_to_currency @price.dollars %>
+			<%= link_to "Change", new_price_path %>
+		<% else %>
+			<%= link_to "Add Price", new_price_path %>
+		<% end %>
+
+		<%#<h4>Projected Profit</h4>%>
+		<%#<%= Transaction.total_estimated %>
+		<%#<h4>Net Proft</h4>%>
+		<%#<%= Transaction.total_finalized %>
+	</div>
+	<h3>Reservations</h3>
+	<div class="panel callout radius">
+		<table>
+			<thead>
+				<tr>
+					<th>Reservation Id</th>
+					<th>Customer Email</th>
+					<th>Price Paid</th>
+					<th>Unit Price</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @transactions.each do |t| %>
+					<tr>
+						<td><%= t.reservation.id %></td>
+						<td><%= t.customer.email %></td>
+						<td><%= number_to_currency t.reservation.calculate_cost(t.price.pennies) %></td>
+						<td><%= number_to_currency t.price.dollars%></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>

@@ -14,7 +14,7 @@ class PaymentsController < ApplicationController
 
   def create
     @price = Price.last
-    @amount = @reservation.calculate_cost @price.pennies
+    @amount = @reservation.calculate_cost_in_pennies @price.pennies
 
     customer = Stripe::Customer.create(
       :email => current_customer.email,
@@ -23,12 +23,10 @@ class PaymentsController < ApplicationController
 
     charge = Stripe::Charge.create(
       :customer    => customer.id,
-      :amount      => @amount,
+      :amount      => @amount.to_i,
       :description => 'Rails Stripe customer',
       :currency    => 'usd'
     )
-
-    byebug
 
     transaction = Transaction.new(
       price_id: @price.id,

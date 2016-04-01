@@ -12,9 +12,17 @@
   </head>
 
   <body>
-
-
-    <%= render partial: "shared/navigation" %>
+    <% unless owner_signed_in? %>
+      <%= render partial: "shared/navigation" %>
+    <% else %>
+      <%= link_to "Logout", destroy_owner_session_path, method: :delete %>
+    <% end %>
+    <% flash.each do |key, msg| %>
+      <div data-alert class="alert-box success radius <%= key %>">
+        <%= content_tag :div, msg %>
+        <a href="#" class="close">&times;</a>
+      </div>
+    <% end %>
     <%= yield %>
   </body>
 </html>

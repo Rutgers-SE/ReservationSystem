@@ -1,11 +1,11 @@
 require 'rest-client'
+require 'byebug'
 class Reservation < ActiveRecord::Base
-  URL = "http://45.79.165.248:8080/"
   belongs_to :customers
   before_save :check_if_valid_date_range # lets see if this is correct
 
   validates_presence_of :start
-  validates_presence_of :finished
+  validates_presence_of :finish
 
   # need to enable pricing
   has_one :price, as: :item, through: :products
@@ -15,26 +15,35 @@ class Reservation < ActiveRecord::Base
   end
 
   def calculate_cost(price_in_pennies)
-    (price_in_pennies * hours).to_i / 100
+    (price_in_pennies * hours).to_i / 100.0
+  end
+
+  def calculate_cost_in_pennies(pip)
+    calculate_cost(pip) * 100
   end
 
   class << self
+    URL = "http://45.79.165.248:8080/" # i wan't to make this DRY, but, forgot out the location of constants work in ruby
     def remote_space_check(reservation)
       # for the final project, we need to make this connection secure
-      response = RestClient.get "#{URL}/api/garage/b/checkreservation", accept: :json, params: {
+      response = RestClient.get "http://45.79.165.248:8080/api/garage/b/checkreservation", params: {
         start: reservation.start, 
         finish: reservation.finish 
       }
-      outcome = JSON.parse response.to_s
+      #outcome = JSON.parse response.to_s
 
       #return false unless outcome # can't use this when no access to the internet
-      return true
+      return 'true' == (response.to_s)
 
+    end
+
+    def if_true string_true
+      string_true == 'true'
     end
 
     # save a space in the garage
     def remote_reserve_space(res)
-      response = RestClient.get "#{URL}/api/garage/b/setreservation", accept: :json, params: {
+      response = RestClient.get "http://45.79.165.248:8080/api/garage/b/setreservation", params: {
         start: res.start,
         finish: res.finish
       }
@@ -44,7 +53,7 @@ class Reservation < ActiveRecord::Base
       # "REST api" and returned something a little more
       # that a simple boolean... but what ever...
       #return false unless outcome # can't use this when no access to the internet
-      return true
+      return 'true' == (response.to_s)
     end
 
     # This code is not implemented in the garage system.

@@ -10,8 +10,8 @@ user = Customer.new(
   first_name: "test",
   last_name: "user 1",
   email: "test@customer.com",
-  password: "1234qwer",
-  password_confirmation: "1234qwer"
+  password: "12345678",
+  password_confirmation: "12345678"
 )
 
 user.skip_confirmation!
@@ -20,9 +20,9 @@ user.save!
 owner = Owner.new(
   first_name: "test",
   last_name: "Admin 1",
-  email: "test@admin.com",
-  password: "1234qwer",
-  password_confirmation: "1234qwer"
+  email: "test@owner.com",
+  password: "12345678",
+  password_confirmation: "12345678"
 )
 
 owner.skip_confirmation!
@@ -32,8 +32,8 @@ admin = Admin.new(
   first_name: "test",
   last_name: "Admin 1",
   email: "test@admin.com",
-  password: "1234qwer",
-  password_confirmation: "1234qwer"
+  password: "12345678",
+  password_confirmation: "12345678"
 )
 
 admin.skip_confirmation!

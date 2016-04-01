@@ -13,6 +13,12 @@
   <body>
 
     <%= render partial: "shared/navigation"%>
+    <% flash.each do |key, msg| %>
+      <div data-alert class="alert-box success radius <%= key %>">
+        <%= content_tag :div, msg %>
+        <a href="#" class="close">&times;</a>
+      </div>
+    <% end %>
 
     <div class="callout large">
       <div class="row column text-center">
@@ -26,7 +32,7 @@
         <img class="thumbnail" src="http://placehold.it/750x350">
       </div>
       <div class="medium-6 columns medium-pull-6">
-        <h2>Our Agency, our selves.</h2>
+        <h2>How our garage works</h2>
         <p>Vivamus luctus urna sed urna ultricies ac tempor dui sagittis. In condimentum facilisis porta. Sed nec diam eu diam mattis viverra. Nulla fringilla, orci ac euismod semper, magna diam porttitor mauris, quis sollicitudin sapien justo in libero. Vestibulum mollis mauris enim. Morbi euismod magna ac lorem rutrum elementum. Donec viverra auctor.</p>
       </div>
     </div>

@@ -1,9 +1,10 @@
 <div class="top-bar">
   <div class="top-bar-left">
-    <ul class="menu">
+    <ul class="dropdown menu" data-dropdown-menu>
       <li class="menu-text"><%= link_to "Galaxy Garage", root_path %></li>
       <% if customer_signed_in? %>
         <li><%= link_to "Reserve", new_reservation_path %></li>
+        <li><%= link_to "View Reservations", reservations_path %></li>
       <% end %>
       <% if owner_signed_in? %>
         <li><%= link_to "Reserve", new_reservation_path %></li>
