@@ -38,3 +38,7 @@ admin = Admin.new(
 
 admin.skip_confirmation!
 admin.save!
+
+price = Price.create(
+  pennies: 200
+)
