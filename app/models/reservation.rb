@@ -1,6 +1,5 @@
 require 'rqrcode'
 require 'rest-client'
-require 'byebug'
 class Reservation < ActiveRecord::Base
   belongs_to :customers
   before_save :check_if_valid_date_range # lets see if this is correct

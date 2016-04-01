@@ -1,4 +1,3 @@
-require 'byebug'
 class PaymentsController < ApplicationController
   before_filter :authenticate_customer!, only: [:create, :refund, :new]
   before_filter :set_reservation, only: [:create, :new, :refund]

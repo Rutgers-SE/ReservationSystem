@@ -1,4 +1,3 @@
-require 'byebug'
 class PricesController < ApplicationController
 
   def index
