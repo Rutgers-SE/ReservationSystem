@@ -2,13 +2,14 @@ source 'https://rubygems.org'
 
 # heroku things
 ruby '2.2.4'
-gem 'rails_12factor'
 gem 'figaro'
 gem 'mailgun_rails'
 gem 'rqrcode'
 
 gem 'rails', '4.2.6'
 gem 'sqlite3', group: :development
+gem 'rails_12factor', group: :production
+
 gem 'pg', group: :production
 
 # Use SCSS for stylesheets
