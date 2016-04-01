@@ -14,6 +14,28 @@ The `run` script depends on the `secret` file. The `secret` file is not tracked 
 
 This will change eventually, so make sure you stay updated on how to run it
 
+## Preset Users
+
+Customer
+
+```
+email = test@customer.com
+password = 1234qwer
+```
+
+Owner
+
+```
+email = test@owner.com
+password = 1234qwer
+```
+
+Admin
+
+```
+email = test@admin.com
+password = 1234qwer
+```
 
 ## Backend Heavy
 - [x] Basic User authentication

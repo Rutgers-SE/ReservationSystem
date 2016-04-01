@@ -21,7 +21,8 @@
       <div class="field">
         <%= f.label :start %><br>
         <%= f.datetime_select :start %>
-      </div>      </div>
+      </div>     
+      </div>
       <div class="column medium-6">
       <div class="field">
         <%= f.label :finish %><br>
@@ -33,7 +34,7 @@
     </div>
       <div class="field">
         <%= f.label :customer_id %><br>
-        <%= f.text_field :customer_id, value: current_customer.id %>
+        <%= f.text_field :customer_id, readonly: true, value: current_customer.id %>
       </div>
       <div class="actions">
         <%= f.submit %>
