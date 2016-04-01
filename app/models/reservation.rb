@@ -28,7 +28,6 @@ class Reservation < ActiveRecord::Base
   end
 
   class << self
-    URL = "http://45.79.165.248:8080/" # i wan't to make this DRY, but, forgot out the location of constants work in ruby
     def remote_space_check(reservation)
       # for the final project, we need to make this connection secure
       response = RestClient.get "http://45.79.165.248:8080/api/garage/b/checkreservation", params: {
