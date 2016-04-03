@@ -42,3 +42,4 @@ admin.save!
 price = Price.create(
   pennies: 200
 )
+
