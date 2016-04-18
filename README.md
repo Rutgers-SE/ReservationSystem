@@ -5,6 +5,14 @@ Nothing from the garage repo should be managed in this git repo. This is purely 
 
 ## How to run
 
+Installation Steps:
+  
+1. get rvm from "https://rvm.io/"
+2. install ruby version 2.2.4
+3. go to the root directory of the reservation system
+4. bundle install
+5. now your ready to use the system.
+
 When running this rails server with the correct stripe credentials, make sure that you are in the root of the project directory, and run
 ```bash
   bash <(./run)
