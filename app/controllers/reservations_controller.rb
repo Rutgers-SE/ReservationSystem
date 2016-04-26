@@ -1,6 +1,6 @@
 require 'byebug'
 class ReservationsController < ApplicationController
-  before_action :set_reservation, only: [:show, :edit, :update, :destroy, :validate]
+  before_action :set_reservation, only: [:show, :edit, :update, :destroy, :validate, :valid_qr]
   before_action :authenticate_customer!
 
   # GET /reservations
@@ -75,6 +75,7 @@ class ReservationsController < ApplicationController
   end
 
 
+  # Validates the reservation to
   def validate
     # need to add more stuff to make sure nothing sketchy happens
     @reservation.is_validated = true

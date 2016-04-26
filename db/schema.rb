@@ -134,10 +134,10 @@ ActiveRecord::Schema.define(version: 20160401073530) do
   create_table "transactions", force: :cascade do |t|
     t.integer  "reservation_id"
     t.integer  "price_id"
-    t.integer  "customer_id"
     t.string   "charge_id"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
+    t.integer  "customer_id"
     t.boolean  "finalized",      default: false, null: false
   end
 

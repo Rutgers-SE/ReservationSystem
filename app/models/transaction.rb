@@ -27,5 +27,12 @@ class Transaction < ActiveRecord::Base
     def percent_complete
       (total_finalized / total_estimated) * 100
     end
+
+
+    def valid_qr qr_data
+
+
+      true
+    end
   end
 end
