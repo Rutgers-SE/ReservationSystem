@@ -42,8 +42,7 @@ class Transaction < ActiveRecord::Base
 
     def valid_qr(res, code)
       trans = where(:qr_seed => code).first
-      return false if trans.nil? 
-      return false if trans.size > 1
+      return false if trans.nil?
       true
     end
   end

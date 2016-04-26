@@ -75,7 +75,7 @@ class ReservationsController < ApplicationController
   # DELETE /reservations/1.json
   def destroy
     tid = params[:transaction_id]
-    byebug
+    # byebug
     transaction = Transaction.find(tid)
 
 
