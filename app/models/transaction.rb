@@ -39,19 +39,11 @@ class Transaction < ActiveRecord::Base
     def percent_complete
       (total_finalized / total_estimated) * 100
     end
-<<<<<<< HEAD
-
-
-    def valid_qr qr_data
-
-
-=======
     
     def valid_qr(res, code)
       trans = where(:qr_seed => code).first
       return false if trans.nil? 
       return false if trans.size > 1
->>>>>>> 57d96fcbab5bba74eba46a5f1c12ee11aa30f727
       true
     end
   end
