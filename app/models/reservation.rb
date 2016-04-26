@@ -46,7 +46,7 @@ class Reservation < ActiveRecord::Base
         finish: res.finish
       }
 
-      byebug
+      # byebug
 
       # return false if the outcome is false
       # I would prefer if the "REST api" was an actual

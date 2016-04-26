@@ -16,7 +16,7 @@ class PaymentsController < ApplicationController
     @price = Price.last
     @amount = @reservation.calculate_cost_in_pennies @price.pennies
 
-    byebug
+    # byebug
 
     customer = Stripe::Customer.create(
       :email => current_customer.email,
