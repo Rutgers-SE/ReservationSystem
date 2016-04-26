@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160401073530) do
+ActiveRecord::Schema.define(version: 20160426031757) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "first_name",             default: "", null: false
@@ -139,6 +139,7 @@ ActiveRecord::Schema.define(version: 20160401073530) do
     t.datetime "updated_at",                     null: false
     t.integer  "customer_id"
     t.boolean  "finalized",      default: false, null: false
+    t.string   "qr_seed",        default: "",    null: false
   end
 
   add_index "transactions", ["customer_id"], name: "index_transactions_on_customer_id"

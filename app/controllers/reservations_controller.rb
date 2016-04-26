@@ -1,7 +1,12 @@
 require 'byebug'
 class ReservationsController < ApplicationController
+<<<<<<< HEAD
   before_action :set_reservation, only: [:show, :edit, :update, :destroy, :validate, :valid_qr]
   before_action :authenticate_customer!
+=======
+  before_action :set_reservation, only: [:show, :edit, :update, :destroy, :validate]
+  before_action :authenticate_customer!, except: [:valid_qr]
+>>>>>>> 57d96fcbab5bba74eba46a5f1c12ee11aa30f727
 
   # GET /reservations
   # GET /reservations.json
@@ -89,12 +94,12 @@ class ReservationsController < ApplicationController
   def valid_qr
     code = params[:qr_data]
     respond_to do |format|
-      if Transaction.valid_qr code
-        format.html { render json: { message: "Valid qr code" }}
-        format.json { render json: { message: "Valid qr code" } } 
+      if Transaction.valid_qr @reservation, code
+        format.html { render json: { status: true, message: "Valid qr code" }}
+        format.json { render json: { status: true, message: "Valid qr code" }} 
       else 
-        format.html { render json: { error: "Nah dude, your trying to fake out the system" }}
-        format.json { render json: { error: "Nah dude, your trying to fake out the system" }}
+        format.html { render json: { status: false, error: "Nah dude, your trying to fake out the system" }}
+        format.json { render json: { status: false, error: "Nah dude, your trying to fake out the system" }}
       end
     end
   end
