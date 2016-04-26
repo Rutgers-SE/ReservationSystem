@@ -46,8 +46,8 @@ class ReservationsController < ApplicationController
         return  redirect_to :back, notice: "Someone snagged your spot before you did.... sorry... This could be fixed with a form timer when creating a reservation."
       end
       redirect_to new_payment_path(reservation_id: @reservation.id), {
-        notice: 'Reservation was successfully created.'
-      }
+                    notice: 'Reservation was successfully created.'
+                  }
     else
       # if the reservation did not save successfully
       # remove the reservation
@@ -74,27 +74,35 @@ class ReservationsController < ApplicationController
   # DELETE /reservations/1
   # DELETE /reservations/1.json
   def destroy
-    
-    @reservation.destroy
-      transactionlist = index
-      transactionlist = transactionlist.find(reservation_id: @reservation.id )
-      temp = Stripe::Refund.create(
-         charge: transactionlist.charge_id
-         )
-    respond_to do |format|
-    transactionlist.destroy
-    format.html { redirect_to reservations_url, notice: 'Reservation was successfully destroyed.' }
-    format.json { head :no_content }
+    tid = params[:transaction_id]
+    byebug
+    transaction = Transaction.find(tid)
+
+
+    temp = Stripe::Refund.create(
+      charge: transaction.charge_id
+    )
+
+
+    if @reservation.destroy
+      transaction.destroy # hopefully this works
+      respond_to do |format|
+        format.html { redirect_to reservations_path, notice: 'Reservation was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    else
+      respond_to do |format|
+        transactionlist.destroy
+        format.html { redirect_to reservations_path, notice: 'Could not successfully remove the reservation' }
+        format.json { head :no_content }
+      end
     end
-    
-    rescue Stripe::CardError => e
+
+  rescue Stripe::CardError => e
     flash[:error] = e.message
     redirect_to reservations_path
     format.html { redirect_to reservations_url, notice: 'Reservation was unsuccessfu destroyed.' }
     format.json { head :no_content }
-      
-     
-    end
   end
 
 
@@ -133,8 +141,8 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.find(params[:id])
   end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def reservation_params
-      params.require(:reservation).permit(:start, :finish, :customer_id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def reservation_params
+    params.require(:reservation).permit(:start, :finish, :customer_id)
+  end
 end
