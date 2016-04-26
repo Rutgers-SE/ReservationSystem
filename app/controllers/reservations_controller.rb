@@ -1,12 +1,7 @@
 require 'byebug'
 class ReservationsController < ApplicationController
-<<<<<<< HEAD
-  before_action :set_reservation, only: [:show, :edit, :update, :destroy, :validate, :valid_qr]
-  before_action :authenticate_customer!
-=======
   before_action :set_reservation, only: [:show, :edit, :update, :destroy, :validate]
   before_action :authenticate_customer!, except: [:valid_qr]
->>>>>>> 57d96fcbab5bba74eba46a5f1c12ee11aa30f727
 
   # GET /reservations
   # GET /reservations.json

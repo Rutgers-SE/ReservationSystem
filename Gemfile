@@ -12,6 +12,7 @@ gem 'rails_12factor', group: :production
 
 gem 'pg', group: :production
 
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -62,4 +63,10 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+end
+
+
+## datetimepicker
+source 'https://rails-assets.org' do
+  gem 'rails-assets-datetimepicker'
 end
