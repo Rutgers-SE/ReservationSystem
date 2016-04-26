@@ -53,18 +53,17 @@ class PaymentsController < ApplicationController
   def refund
     return redirect_to reservations_path unless @reservation.is_valid
 
-
     customer = Stripe::Customer.create(
       email: current_customer.email,
     )
 
     refund = Stripe::Refund.create(
       customer: customer.id,
-      amount: @reservation.calculate_cost(Price.last.pennies),
+      amount: @reservation.calculate_cost_in_pennies(Price.last.pennies),
       description: "Galaxy Garage Reservation Refund",
       currency: 'usd'
     )
-    
+
   end
 
   private

@@ -39,7 +39,7 @@ class Transaction < ActiveRecord::Base
     def percent_complete
       (total_finalized / total_estimated) * 100
     end
-    
+
     def valid_qr(res, code)
       trans = where(:qr_seed => code).first
       return false if trans.nil? 
