@@ -10,6 +10,7 @@ class Reservation < ActiveRecord::Base
 
   # need to enable pricing
   has_one :price, as: :item, through: :products
+  has_one :transaction
 
   # TODO: Test this
   def hours

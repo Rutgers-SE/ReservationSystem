@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get '/reservation/:id/validate' => 'reservations#validate', as: :validate_reservation
   get '/reservation/:id/qr' => 'reservations#qr_code', as: :qr_reservation
   get '/payment/refund' => 'payments#refund', as: :refund_payment
+  get '/api/valid_qr' => 'reservations#valid_qr', as: :valid_qr
 
   devise_for :owners, controllers: {
     registrations: 'owners/registrations'
