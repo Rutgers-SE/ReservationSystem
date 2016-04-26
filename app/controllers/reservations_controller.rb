@@ -1,4 +1,5 @@
 require 'byebug'
+require 'stripe'
 class ReservationsController < ApplicationController
   before_action :set_reservation, only: [:show, :edit, :update, :destroy, :validate]
   before_action :authenticate_customer!, except: [:valid_qr]
@@ -73,12 +74,29 @@ class ReservationsController < ApplicationController
   # DELETE /reservations/1
   # DELETE /reservations/1.json
   def destroy
+    
     @reservation.destroy
+      transactionlist = index
+      transactionlist = transactionlist.find(reservation_id: @reservation.id )
+      temp = Stripe::Refund.create(
+         charge: transactionlist.charge_id
+         )
     respond_to do |format|
-      format.html { redirect_to reservations_url, notice: 'Reservation was successfully destroyed.' }
-      format.json { head :no_content }
+    transactionlist.destroy
+    format.html { redirect_to reservations_url, notice: 'Reservation was successfully destroyed.' }
+    format.json { head :no_content }
+    end
+    
+    rescue Stripe::CardError => e
+    flash[:error] = e.message
+    redirect_to reservations_path
+    format.html { redirect_to reservations_url, notice: 'Reservation was unsuccessfu destroyed.' }
+    format.json { head :no_content }
+      
+     
     end
   end
+
 
 
   # Validates the reservation to
@@ -115,8 +133,8 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.find(params[:id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
-  def reservation_params
-    params.require(:reservation).permit(:start, :finish, :customer_id)
-  end
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def reservation_params
+      params.require(:reservation).permit(:start, :finish, :customer_id)
+    end
 end
