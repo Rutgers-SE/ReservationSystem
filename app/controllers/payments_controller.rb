@@ -1,3 +1,4 @@
+require 'byebug'
 class PaymentsController < ApplicationController
   before_filter :authenticate_customer!, only: [:create, :refund, :new]
   before_filter :set_reservation, only: [:create, :new, :refund]
@@ -14,6 +15,8 @@ class PaymentsController < ApplicationController
   def create
     @price = Price.last
     @amount = @reservation.calculate_cost_in_pennies @price.pennies
+
+    # byebug
 
     customer = Stripe::Customer.create(
       :email => current_customer.email,

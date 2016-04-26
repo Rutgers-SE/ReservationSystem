@@ -20,7 +20,7 @@
         <td><%= t.reservation.finish %></td>
         <td><%= t.reservation.hours %></td>
         <td><%= number_to_currency(t.reservation.calculate_cost(t.price.pennies)) %></td>
-        <td><%= link_to "View ticket", qr_reservation_path(t.reservation) %></td>
+        <td><%= link_to "View ticket", qr_reservation_path(t.reservation, transaction_id: t.id) %></td>
       </tr>
     <% end %>
   </tbody>
