@@ -2,6 +2,7 @@ require 'byebug'
 class ReservationsController < ApplicationController
   before_action :set_reservation, only: [:show, :edit, :update, :destroy, :validate]
   before_action :authenticate_customer!, except: [:valid_qr]
+  layout "qr", only: 'qr_code'
 
   # GET /reservations
   # GET /reservations.json
@@ -30,14 +31,18 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.new(reservation_params)
 
     # reserve space in the garage (REST API)
-    return render :new unless Reservation.remote_space_check(@reservation)
+    unless Reservation.remote_space_check(@reservation)
+      puts "No space"
+      return redirect_to  :back, notice: "Space not available in the reservation system"
+    end
 
 
     # attemp to save
     if @reservation.save
       unless Reservation.remote_reserve_space(@reservation)
         @reservation.destroy
-        return render :new, notice: "Someone snagged your spot before you did.... sorry... This could be fixed with a form timer when creating a reservation."
+        puts "Too slow"
+        return  redirect_to :back, notice: "Someone snagged your spot before you did.... sorry... This could be fixed with a form timer when creating a reservation."
       end
       redirect_to new_payment_path(reservation_id: @reservation.id), {
         notice: 'Reservation was successfully created.'
@@ -46,7 +51,8 @@ class ReservationsController < ApplicationController
       # if the reservation did not save successfully
       # remove the reservation
       Reservation.remote_remove @reservation
-      render :new, notice: "Your reservation could not be created successfully"
+      puts 'Not saved'
+      redirect_to :back, notice: "Your reservation could not be created successfully"
     end
   end
 
@@ -83,6 +89,10 @@ class ReservationsController < ApplicationController
     redirect_to root_path, notice: "Reservation Created Successfully"
   end
 
+  def qr_code
+    tid = params[:transaction_id]
+    @t = Transaction.find(tid)
+  end
 
   # this is apart of the reservation REST API.
   # this is the only endpoint we need... (so far)

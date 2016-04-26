@@ -10,13 +10,13 @@ class Transaction < ActiveRecord::Base
   validates_presence_of :price
   validates_presence_of :customer
   validates_presence_of :reservation
-  
+
   def compile_qr_seed
     self.qr_seed = qr_seed()
   end
-  
+
   def qr_seed()
-    "#{customer.email}-#{reservation.start.to_s}-#{reservation.finish.to_s}"
+    "#{customer.email}::#{reservation.start.to_s}::#{reservation.finish.to_s}"
   end
 
   def generate_qr
