@@ -78,11 +78,7 @@ class ReservationsController < ApplicationController
     # byebug
     transaction = Transaction.find(tid)
 
-
-    temp = Stripe::Refund.create(
-      charge: transaction.charge_id
-    )
-
+    Stripe::Refund.create charge: transaction.charge_id
 
     if @reservation.destroy
       transaction.destroy # hopefully this works
