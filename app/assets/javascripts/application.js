@@ -13,17 +13,19 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
-//= require turbolinks
 //= require datetimepicker
 //= require_tree .
 
 $(function(){
-
-
   $(document).foundation();
+  $.datetimepicker.setLocale('en');
   $('.datetimepicker').datetimepicker();
-
-
 });
+
+$(document).on('change', function () {
+  $(document).foundation();
+  $.datetimepicker.setLocale('en');
+  $('.datetimepicker').datetimepicker();
+})
 
 

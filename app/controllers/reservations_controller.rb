@@ -31,6 +31,8 @@ class ReservationsController < ApplicationController
   def create
     @reservation = Reservation.new(reservation_params)
 
+    byebug
+
     # reserve space in the garage (REST API)
     unless Reservation.remote_space_check(@reservation)
       puts "No space"

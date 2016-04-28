@@ -20,13 +20,13 @@
       <div class="column medium-6">
         <div class="field">
           <%= f.label :start %><br>
-          <%= f.datetime_select :start %>
+          <%= f.text_field :start, class: "datetimepicker" %>
         </div>     
       </div>
       <div class="column medium-6">
         <div class="field">
           <%= f.label :finish %><br>
-          <%= f.datetime_select :finish %>
+          <%= f.text_field :finish, class: "datetimepicker" %>
         </div>
       </div>
 
@@ -41,10 +41,18 @@
     </div>
 
 
-
-
-    <input class=".datetimepicker" type="text" />
+    
 
   <% end %>
 
 </div>
+
+
+
+<script>
+  $(document).on('change', function () {
+  $(document).foundation();
+  $.datetimepicker.setLocale('en');
+  $('.datetimepicker').datetimepicker();
+  })
+</script>
