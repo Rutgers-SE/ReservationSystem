@@ -1,5 +1,75 @@
+<div class="row">
+
+<nav aria-label="You are here:" role="navigation">
+  <ul class="breadcrumbs">
+    <li><%= link_to "Home", root_path %></li>
+    <li><%= link_to "Reservation", reservations_path %></li>
+    <li>
+      <span class="show-for-sr">Current: </span> New 
+    </li>
+  </ul>
+</nav>
+
 <h1>New Reservation</h1>
+
+<h4>Start Date</h4>
+
+<div class="row">
+  <div class="button-group column small-12">
+    <button class="button small column secondary small-4">^</button>
+    <button class="button small column secondary small-4">^</button>
+    <button class="button small column secondary small-4">^</button>
+  </div>
+  <div class="column small-12">
+    <div class="row">
+      <div class="column small-4">
+        <input type="text" placeholder="MM" class="inline   "/>
+      </div>
+      <div class="column small-4">
+        <input type="text" placeholder="DD" class="inline   "/>
+      </div>
+      <div class="column small-4">
+        <input type="text" placeholder="YYYY" class="inline   "/>
+      </div>
+    </div>
+  </div>
+  <div class="button-group column small-12">
+    <button class="button small secondary column small-4">v</button>
+    <button class="button small secondary column small-4">v</button>
+    <button class="button small secondary column small-4">v</button>
+  </div>
+</div>
+
+<h4>Finsih Date</h4>
+
+<div class="row">
+  <div class="button-group column small-12">
+    <button class="button small column secondary small-4">^</button>
+    <button class="button small column secondary small-4">^</button>
+    <button class="button small column secondary small-4">^</button>
+  </div>
+  <div class="column small-12">
+    <div class="row">
+      <div class="column small-4">
+        <input type="text" placeholder="MM" class="inline   "/>
+      </div>
+      <div class="column small-4">
+        <input type="text" placeholder="DD" class="inline   "/>
+      </div>
+      <div class="column small-4">
+        <input type="text" placeholder="YYYY" class="inline   "/>
+      </div>
+    </div>
+  </div>
+  <div class="button-group column small-12">
+    <button class="button small secondary column small-4">v</button>
+    <button class="button small secondary column small-4">v</button>
+    <button class="button small secondary column small-4">v</button>
+  </div>
+</div>
 
 <%= render 'form' %>
 
 <%= link_to 'Back', reservations_path %>
+
+</div>
