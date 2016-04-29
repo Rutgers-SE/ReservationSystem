@@ -34,7 +34,7 @@ class Transaction < ActiveRecord::Base
     def total_estimated
       all
         .collect{|to, tr| to + tr.price.pennies}
-    end 
+    end
 
     def percent_complete
       (total_finalized / total_estimated) * 100
